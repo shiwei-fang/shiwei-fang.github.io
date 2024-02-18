@@ -1,0 +1,122 @@
+/*
+ * Globals
+ */
+
+/* @media (min-width: 48em) {
+    html {
+      font-size: 18px;
+    }
+  } */
+
+
+
+
+/*
+   * Override Bootstrap's default container.
+   */
+/*   
+ .container .blog-main{
+    max-width: 100rem;
+  } */
+
+/*
+   * Blog posts
+   */
+.blog-post {
+  margin-bottom: 4rem;
+  color: #595959;
+}
+
+
+/*
+   * Blog name and description
+   */
+
+.blog-header {
+  padding-bottom: 1.25rem;
+  margin-bottom : 2rem;
+  border-bottom : .05rem solid #eee;
+}
+
+.blog-title {
+  margin-top    : 1rem;
+  margin-bottom : 0;
+  font-size     : x-large;
+  font-weight   : bold;
+  padding-bottom: 1rem;
+}
+
+.blog-secondary-title {
+  margin-bottom : 0;
+  font-size     : large;
+  font-weight   : bold;
+  padding-left  : 0px;
+  padding-right : 0px;
+  padding-bottom: 1rem;
+}
+
+.blog-post-meta {
+  margin-bottom: 0.5rem;
+  color        : #656565;
+  font-size: 0.9rem;
+}
+
+.blog-description {
+  font-size: 1.1rem;
+  color    : #999;
+}
+
+.blog-post h3 {
+  font-size: 1.4rem;
+}
+
+.blog-post p {
+  font-size  : 0.95rem;
+  color      : #656565;
+  font-weight: 500;
+}
+
+/* .blog-post pre {
+  white-space: pre-wrap;
+  display: block;
+  overflow: auto;
+  word-wrap: normal;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: auto !important;
+} */
+
+.blog-post .card {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+
+}
+
+.blog-post .card pre{
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.blog-post code{
+  color: #656565;
+}
+
+.blog-post a {
+  word-wrap: break-word;
+}
+
+.blog-post-meta a {
+  margin-bottom: 1.25rem;
+  color        : rgb(66, 169, 223);
+}
+
+
+.blog-post iframe {
+  z-index:0;
+  display: block;
+  margin : 0 auto;
+}

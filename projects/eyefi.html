@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-611R9WFK9T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-611R9WFK9T');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Shiwei Fang - EyeFi</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/blog.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><b>&nbsp;&nbsp;Shiwei Fang</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <ul class="nav nav-pills navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">&nbsp;Home&nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Shiwei_Fang_CV.pdf" target="_blank">&nbsp;CV&nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../research/publications.html">&nbsp;Publications&nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="projects.html">&nbsp;Projects&nbsp;</a>
+                    </li>
+                </ul>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="row justify-content-center">
+        <div class="col"></div>
+
+        <div class="col-sm-9 col-md-8 col-xl-6" style="max-width: 80rem;">
+            <div class="container-fluid"
+                style="background-color: transparent; padding-left: 0px;padding-right: 0px; padding-top: 0px;">
+
+                <div class="blog-post"  style="text-align: justify">
+                    
+                    <div class="blog-title">EyeFi: Fast Human Identification Through Vision and WiFi-based Trajectory Matching</div>
+                    <p class="blog-post-meta"><a href="../index.html">Shiwei Fang</a></p>
+
+                    <p>This is the website for the research project EyeFi, the resulting paper "EyeFi: Fast Human Identification Through Vision and WiFi-based Trajectory Matching" appeared in DCOSS 2020. 
+                    </p>
+
+                    <hr>
+
+                    <h3>Motivation & Goal</h3>
+                    <p>
+                        Human sensing, motion trajectory estimation, and identification have a wide range of applications, including in retail stores, surveillance, public safety, public address, and in access control. For example, in retail stores, it is useful to capture customer behavior to determine an optimal layout for product placement, detecting re-appearing shoppers after weeks to track shopper retention rate, separating employees from shoppers to generate an accurate heatmap of motion pattern of (only) shoppers. For surveillance, it is useful to identify and track a limited set of people from a crowd, e.g., tracking undercover police agents from a group of people to ensure their safety. Once a class of people is identified, that can be leveraged for public address based on additional contexts. For example, when an active shooter in a building has been identified through a security camera, targeted and customized messages can be sent to different groups of people in different parts of the building through accurate identification to help to find safe escape routes -- instead of sending a generic SMS to everyone, possibly including the shooter. We want to develop a system that can provide long-term re-identification and does not require privacy intrusion techniques such as facial recognition. 
+                    </p>
+
+
+                    <hr>
+
+                    <h3>Proposed Solution</h3>
+
+                    <p>
+                        We propose to fuse two powerful sensing modalities -- WiFi and camera -- in order to overcome the aforementioned limitations of the state-of-the-art solutions. We call our proposed solution EyeFi. EyeFi does not require facial recognition, provides long-term re-identification, does not require deployment and maintenance of multiple WiFi units, and has the potential to provide such intelligent capabilities on a standalone device.
+                    </p>
+
+                    <p>
+                        EyeFi uses the on-board camera to detect, track, and estimate the motion trajectories of the people in its field of view. Simultaneously, using the on-board WiFi chipset, EyeFi overhears WiFi packets from nearby smartphones and extracts the Channel State Information (CSI) data from the WiFi packets. The CSI information is used to estimate the Angle of Arrival (AoA) of the smartphone from the EyeFi unit. Compared to existing WiFi-based AoA estimation techniques such as SpotFi [1], EyeFi uses a smartphone in motion as a transmitter (not a stationary desktop computer), uses a low sampling rate (around 23 packets per second), and uses a novel teacher-student based visually guided neural network to speed up the AoA estimation by over 3,800 times. For each person (i.e., smartphone) generating the WiFi traffic, a sequence of AoAs is estimated to capture the motion trajectory of the individual. Then EyeFi performs cross-modal trajectory matching to determine the identity of the individuals.
+                    </p>
+
+                    <p>
+                        As most people use smartphones and the same smartphone is usually used for an extended period of time, EyeFi can identify the same person across time using the unique MAC address associated with each device. As the MAC address does not reveal the true identity of the person, a higher level of privacy is also enabled. For more detail, please refer to our paper: "EyeFi: Fast Human Identification Through Vision and WiFi-based Trajectory Matching".
+                    </p>
+                    
+                    <hr>
+
+                    <h3>Dataset Collection</h3>
+
+                    <p>
+                        For this project, we collected our own WiFi CSI dataset with Google Pixel 2 XL, Intel NUC with Intel 5300 WiFi card and Bosch Flexidome IP Panoramic 7000 camera as shown below:
+                    </p>
+
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col-md-8">
+                            <img src="pics/eyefi-devices.png" class="img-fluid" alt="Responsive image">
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    
+                    <br/>
+
+                    <p>
+                        In our experiments, we used Intel 5300 WiFi Network Interface Card (NIC) installed in an Intel NUC and Linux CSI tools [2] to extract the WiFi CSI packets. The (x,y) coordinates of the subjects are collected from Bosch Flexidome IP Panoramic 7000 panaromic camera mounted on the ceiling and Angle of Arrival (AoA) derived from the (x,y) coordinates. Both the WiFi card and camera are located at the same origin coordinates but at different height, the camera is location around 2.85m from the ground and WiFi antennas are around 1.12m above the ground.
+                    </p>
+
+                    <p>
+                        The data collection environment consists of two areas (shown below), first one is an rectangluar space messured 11.8m x 8.74m, and the sceond space is a irregularly shaped kitchen area with maximum distances of 19.74m and 14.24m between two walls. The kitchen also has numerous obstacles and different materials that pose different RF reflection characterics includes strong reflector such as metal refrigerators and dishwashers. 
+                    </p>
+                        
+                
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col-md-8">
+                            <img src="pics/eyefi-areas.png" class="img-fluid" alt="Responsive image">
+                        </div>
+                        <div class="col"></div>
+                    </div>
+
+                    <br/>
+
+                    <p>
+                        To collect the WiFi data, we used a Google Pixel 2 XL smartphone as an access point and connect the Intel 5300 NIC to it for WiFi communication. The transmission rate is about 20-25 packets per second. The same WiFi card and phone are used in both lab and kitchen area.
+                    </p>
+
+
+                    <hr>
+
+                    <h3>Dataset Release</h3>
+                    <p>
+                        We release our collected dataset to the community, more information can be found on the webpage:
+                        <br/>
+                        <B>Zenodo: </B>&nbsp;&nbsp;<a href="https://zenodo.org/record/3882104">https://zenodo.org/record/3882104</a>
+                    </p>
+
+                    <hr>
+                    <h3>Citation</h3>
+
+                    If you use our dataset or find our paper useful, please cite our paper:
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-xl-11 mt-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <pre><code>
+@inproceedings{fang2020eyefi,
+    title={EyeFi: Fast Human Identification Through Vision and WiFi-based Trajectory Matching},
+    author={Fang, Shiwei and Islam, Tamzeed and Munir, Sirajum and Nirjon, Shahriar},
+    booktitle={2020 16th International Conference on Distributed Computing in Sensor Systems (DCOSS)},
+    pages={59--68},
+    year={2020},
+    organization={IEEE}
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                    <h3>References</h3>
+
+                    <code>
+                        1. Kotaru, Manikanta, et al. "Spotfi: Decimeter level localization using wifi." Proceedings of the 2015 ACM Conference on Special Interest Group on Data Communication. 2015.<br>
+
+                        2. Halperin, Daniel, et al. "Tool release: Gathering 802.11 n traces with channel state information." ACM SIGCOMM Computer Communication Review 41.1 (2011): 53-53.<br>
+                    </code>
+                    
+
+
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+
+        <div class="col"></div>
+    </div>
+
+
+
+    <footer class="footer text-center">
+        <div class="container">
+            <span class="text-muted">&copy; Shiwei Fang 2024 &nbsp; Email: shfang AT augusta edu</span>
+        </div>
+    </footer>
+    <!-- <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+            <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+        </div>
+    </footer> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+
+</html>
