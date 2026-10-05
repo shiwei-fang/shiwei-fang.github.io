@@ -1,0 +1,27 @@
+---
+layout: default
+width: publications
+---
+{%- comment -%}
+  Publications page layout (used by research/publications.md).
+  The list is generated from _data/publications.yml; each entry is
+  rendered by _includes/publication.html.
+  Column width: .page--publications in css/custom.css (--pub-max).
+{%- endcomment %}
+<div class="pubs">
+    <h4 class="pubs__title">Publications:</h4>
+    <hr class="pubs__rule">
+    {%- comment -%} The legend appears only when at least one paper lists `students:`. {%- endcomment %}
+    {%- assign has_students = false %}
+    {%- for group in site.data.publications %}{% for pub in group.items %}{% if pub.students %}{% assign has_students = true %}{% endif %}{% endfor %}{% endfor %}
+    {%- if has_students %}
+    <p class="pubs__legend"><u class="advisee">Underlined</u>: students I advise.</p>
+    {%- endif %}
+    {%- for group in site.data.publications %}
+
+    <h3 class="pubs__section">{{ group.section }}:</h3>
+    {%- for pub in group.items %}
+{% include publication.html pub=pub %}
+    {%- endfor %}
+    {%- endfor %}
+</div>

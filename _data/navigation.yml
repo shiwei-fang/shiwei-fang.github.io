@@ -1,0 +1,17 @@
+# Links in the top navigation bar, left to right.
+#   key:     matches `nav:` in a page's front matter, which highlights the active tab
+#   url:     site path (starting with /)
+#   new_tab: true opens the link in a new browser tab
+- title: Home
+  key: home
+  url: /
+- title: CV
+  key: cv
+  url: /Shiwei_Fang_CV.pdf
+  new_tab: true
+- title: Publications
+  key: publications
+  url: /research/publications.html
+- title: Research
+  key: research
+  url: /projects/projects.html      # the address stays the same so existing links keep working

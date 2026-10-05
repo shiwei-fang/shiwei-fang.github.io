@@ -1,0 +1,5 @@
+# Used by jekyll-seo-tag to fill in link-preview details for the site author
+# (the `author` in _config.yml). Only needed for the Twitter/X handle.
+Shiwei Fang:
+  name: Shiwei Fang
+  twitter: shiwei_f

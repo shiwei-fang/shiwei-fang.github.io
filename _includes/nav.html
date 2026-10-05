@@ -1,0 +1,34 @@
+{%- comment -%}
+  Top navigation bar. Links come from _data/navigation.yml; the link whose
+  `key` equals the page's `nav` front matter value is highlighted.
+  On narrow screens the links fold into a menu button (Bootstrap collapse);
+  the light/dark switch stays visible next to it. On wider screens the switch
+  sits after the last link (order-sm-last).
+{%- endcomment -%}
+<nav class="navbar navbar-expand-sm sticky-top site-nav" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+
+        <button class="theme-toggle ms-auto ms-sm-0 order-sm-last" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+            <span class="icon-moon">{% include icons/moon.svg %}</span>
+            <span class="icon-sun">{% include icons/sun.svg %}</span>
+        </button>
+
+        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavLinks"
+            aria-controls="siteNavLinks" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="siteNavLinks">
+            <ul class="navbar-nav nav-pills ms-auto">
+                {%- for item in site.data.navigation %}
+                <li class="nav-item">
+                    <a class="nav-link{% if item.key == page.nav %} active{% endif %}" href="{{ item.url | relative_url }}"
+                        {%- if item.key == page.nav %} aria-current="page"{% endif %}
+                        {%- if item.new_tab %} target="_blank"{% endif %}>{{ item.title }}</a>
+                </li>
+                {%- endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

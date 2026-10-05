@@ -1,0 +1,48 @@
+{%- comment -%}
+  Everything inside <head>, shared by every page.
+  Page front matter options used here:
+    title          -> tab title becomes "<site title> - <page title>"
+    description    -> search-engine / link-preview summary for the page
+                      (falls back to `description` in _config.yml)
+    image          -> link-preview image for the page (falls back to the site's)
+{%- endcomment -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- comment -%}
+  Site script (light/dark theme). Loaded before the stylesheets on purpose so
+  the theme is applied before the page is drawn; it is tiny.
+{%- endcomment %}
+<script src="{{ '/js/custom.js' | relative_url }}"></script>
+<meta name="color-scheme" content="light dark">
+<title>{% if page.title %}{{ site.title }} - {{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+{%- comment -%}
+  jekyll-seo-tag: description, canonical URL, link-preview (Open Graph and
+  Twitter/X) tags and structured data for search engines. title=false keeps
+  the browser-tab title above.
+{%- endcomment %}
+{% seo title=false %}
+{%- comment -%}
+  Site icons. The ?v= number makes browsers fetch the icon again instead of
+  using a cached copy (Firefox keeps icons cached for a long time): raise it
+  whenever you replace an icon file.
+{%- endcomment %}
+<link rel="icon" href="{{ '/favicon-32x32.png' | relative_url }}?v=2" type="image/png" sizes="32x32">
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}?v=2" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}?v=2">
+{% include analytics.html %}
+{%- comment -%}
+  Preload the body font chosen with `font` in _config.yml, so text appears in
+  it straight away (the font itself is declared in css/custom.css).
+{%- endcomment %}
+{%- case site.font %}
+{%- when "inter" %}
+<link rel="preload" href="{{ '/fonts/inter-latin-wght-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+{%- when "source-sans-3" %}
+<link rel="preload" href="{{ '/fonts/source-sans-3-latin-wght-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+{%- endcase %}
+{%- comment -%}
+  Bootstrap (bootstrap/, unmodified, replaceable) first, then the site's own
+  styles (css/custom.css), which build on it.
+{%- endcomment %}
+<link href="{{ '/bootstrap/css/bootstrap.min.css' | relative_url }}" rel="stylesheet">
+<link href="{{ '/css/custom.css' | relative_url }}" rel="stylesheet">

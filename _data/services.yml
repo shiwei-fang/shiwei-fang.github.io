@@ -1,0 +1,23 @@
+# "Selected Services" on the homepage. Groups appear in order; each group has
+# a role heading and a list of items, one per line. Wrap an item in single
+# quotes if it contains a colon followed by a space (as the DataFM one does).
+
+- role: Co-chair
+  items:
+    - 'International BuildSys Workshop on DataFM: Data Acquisition & Analysis with Foundational Models (DataFM 2025)'
+    - 'International SenSys+BuildSys Workshop on Data: Acquisition to Analysis (DATA 2022, 2023, 2024)'
+- role: Student Travel Grant Chair
+  items:
+    - '14th ACM International Conference on Systems for Energy-Efficient Buildings, Cities, and Transportation (BuildSys 2027)'
+- role: TPC
+  items:
+    - ACM BuildSys, 2022, 2024, 2025
+    - IEEE/ACM CHASE 2023, 2025
+    - IEEE ICC SAC E-Health, 2023
+    - DATA, 2020, 2021
+- role: Reviewer
+  items:
+    - IEEE RadarConf, 2023, 2024, 2025
+    - TOSN
+    - IMWUT
+    - International Journal of Wireless Information Networks

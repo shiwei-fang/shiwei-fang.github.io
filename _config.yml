@@ -1,0 +1,75 @@
+# Site-wide settings.
+# Changes to this file need a restart of `bundle exec jekyll serve` to show up locally.
+
+title: Shiwei Fang                 # browser-tab title; pages append " - <page title>"
+author: Shiwei Fang                # this exact text is bolded in publication author lists
+description: Shiwei Fang, Assistant Professor in the School of Computer and Cyber Sciences at Augusta University. Research in cyber-physical systems and low-power sensing.
+email_display: shfang AT augusta.edu   # spam-safe form shown on the page
+
+# Body font: inter | source-sans-3 | verdana (the original look).
+# inter and source-sans-3 are stored in /fonts, so nothing loads from Google.
+font: inter
+
+# How news dates are shown: "yyyy/mm" (2025/11) or "mm/yyyy" (11/2025).
+# In _data/news.yml dates are always written "2025-11".
+news_date_format: yyyy/mm
+# How many of the newest news items are always shown; older ones sit behind
+# a "Show more" button.
+news_visible: 6
+
+# Google Analytics 4 measurement ID. Only output on the live site
+# (JEKYLL_ENV=production, which GitHub Pages sets), so local previews aren't counted.
+google_analytics: G-611R9WFK9T
+
+# Profile links. Shown as icons in the homepage Contact section (LinkedIn and
+# Twitter/X links get their icons automatically) and given to search engines
+# as "this is the same person" links. Add Google Scholar, ORCID etc. here too.
+social:
+  name: Shiwei Fang
+  links:
+    - https://www.linkedin.com/in/shiwei-fang-9852524a
+    - https://twitter.com/shiwei_f
+
+# ---- Link previews and search engines -------------------------------------
+# Used by jekyll-seo-tag (see _includes/head.html).
+lang: en_US
+twitter:
+  username: shiwei_f
+  card: summary_large_image        # large image preview when shared
+# Default preview image for every page (1200x630). A page can set its own `image:`.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /imgs/social-card.jpg
+        width: 1200
+        height: 630
+# To verify the site in Google Search Console (optional), paste the code it gives you:
+# webmaster_verifications:
+#   google: your-verification-code
+
+plugins:
+  - jekyll-seo-tag                 # link previews + search-engine tags
+  - jekyll-sitemap                 # /sitemap.xml and /robots.txt for search engines
+
+# This is a user site served from the domain root, so no baseurl.
+url: https://shiwei-fang.github.io
+baseurl: ""
+
+# Markdown settings. input/hard_wrap match what GitHub Pages uses, so local
+# previews render the same as the live site. smart_quotes keeps straight
+# quotes (') instead of converting them to curly ones.
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+
+# Files that are in the repo but must not be published as pages.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - .jekyll-cache

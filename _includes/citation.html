@@ -1,0 +1,16 @@
+{%- comment -%}
+  BibTeX box for project pages. Put the entry in the page's front matter:
+    bibtex: |
+      @inproceedings{key,
+          title={...},
+          ...
+      }
+  then write {% include citation.html %} on its own line in the page.
+{%- endcomment -%}
+<div class="citation">
+    <div class="card">
+        <div class="card-body">
+            <pre><code>{{ page.bibtex | strip | escape }}</code></pre>
+        </div>
+    </div>
+</div>

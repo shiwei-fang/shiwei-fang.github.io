@@ -1,0 +1,11 @@
+# Cards on the Research page (projects/projects.html), in display order.
+#   title:   card heading
+#   summary: one or two sentences under the heading
+#   url:     the project's own page, e.g. /projects/eyefi.html (written as projects/eyefi.md)
+- title: 'EyeFi: Fast Human Identification Through Vision and WiFi-based Trajectory Matching'
+  summary: EyeFi - use camera and WiFi to enable human re-identification through the fusion of trajectories from both modalities.
+  url: /projects/eyefi.html
+
+- title: 'SuperRF: Enhanced 3D RF Representation Using Stationary Low-Cost mmWave Radar'
+  summary: SuperRF – which takes radio frequency (RF) signals from an off-the-shelf, low-cost, 77GHz mmWave radar and produces an enhanced 3D RF representation of the scene.
+  url: /projects/superrf.html

@@ -1,0 +1,19 @@
+---
+layout: default
+width: header
+---
+{%- comment -%}
+  Layout for a project write-up page (see projects/eyefi.md).
+  Front matter:
+    title    short name, used in the browser tab (e.g. EyeFi)
+    heading  full title shown at the top of the page
+    nav      research   (keeps the Research tab highlighted)
+    bibtex   optional, shown by {% include citation.html %}
+  The page body is Markdown.
+{%- endcomment %}
+<article class="blog-post">
+    <div class="blog-title">{{ page.heading | default: page.title }}</div>
+    <p class="blog-post-meta"><a href="{{ '/' | relative_url }}">{{ site.author }}</a></p>
+
+{{ content }}
+</article>

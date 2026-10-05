@@ -1,338 +1,557 @@
-.navbar {
-	margin-bottom: 0;
+/* ==========================================================================
+   Site styles, layered on top of Bootstrap 5.3 (css/bootstrap.min.css).
+
+   Colors are defined once, below, as variables: one set for light mode and
+   one for dark mode. The palette follows a Morandi-style scheme: low
+   colorfulness, grays with a faint warm (greige) undertone, and muted
+   accents (clay, dusty apricot, dusty rose, gray-blue) instead of vivid ones. 
+   The rest of the file only refers to the variables, so to
+   change a color, change it here. The light colors meet the WCAG AA contrast
+   guideline (4.5:1 for text); check any new color with a contrast checker.
+   ========================================================================== */
+
+/* Fonts (self-hosted in /fonts; only the one chosen in _config.yml is used,
+   and browsers only download a font that is actually used). */
+@font-face {
+    font-family: "Inter Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url("../fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "Inter Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url("../fonts/inter-latin-ext-wght-normal.woff2") format("woff2-variations");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "Source Sans 3 Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 200 900;
+    src: url("../fonts/source-sans-3-latin-wght-normal.woff2") format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "Source Sans 3 Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 200 900;
+    src: url("../fonts/source-sans-3-latin-ext-wght-normal.woff2") format("woff2-variations");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* Body font. _layouts/default.html puts font-NAME on <body>, where NAME is
+   `font` in _config.yml (inter, source-sans-3 or verdana). */
+:root      { --font-body: Verdana, Geneva, sans-serif; }
+.font-inter         { --font-body: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.font-source-sans-3 { --font-body: "Source Sans 3 Variable", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+:root {
+    /* Space between the content and the window edge. Shrinks smoothly with
+       the window width (4vw) between a minimum and a maximum. */
+    --page-gutter: clamp(0.75rem, 4vw, 2.5rem);
+    /* Widest the header (and full-width pages) can get. */
+    --header-max: 80rem;
+}
+
+/* ---- Light mode (default) ----
+   Both palettes are scoped to the page root (<html>): the navigation bar
+   carries Bootstrap's own data-bs-theme="dark" permanently and must not flip
+   the site's colors. */
+:root {
+    --c-page-bg: #f0ebe5;
+    --c-text: #57524f;
+    --c-link: #44607e;
+
+    --c-nav-bg: #343c42;
+    --c-nav-active: #647585;
+
+    --c-intro-bg: #555352;
+    --c-intro-text: #efede9;
+    --c-intro-link: #f9d4b4;
+
+    --c-section-bg: #ded4c5;
+    --c-section-text: #4c443e;
+    --c-section-link: #704532;
+    --c-divider: rgba(76, 68, 62, 0.20);
+
+    --c-pub-text: #57524f;
+    --c-pub-rule: #989189;
+    --c-award: #8c4b46;
+
+    --c-card-bg: #fcf9f5;
+    --c-card-header-bg: rgba(0, 0, 0, 0.03);
+    --c-card-border: rgba(0, 0, 0, 0.125);
+    --c-card-text: #5e5a57;
+
+    --c-btn-text: #625c59;
+    --c-btn-hover-bg: #69625b;
+    --c-btn-hover-text: #fdfaf6;
+    --c-btn-detail-border: #d1a59a;
+    --c-btn-pdf-border: #a0b8c8;
+    --c-btn-proj-bg: #fdf9f4;
+    --c-btn-proj-border: #f0ebe5;
+
+    --c-blog-text: #57524e;
+    --c-blog-paragraph: #57524e;
+    --c-blog-meta-link: #466074;
+
+    --c-footer-bg: #b6b0a9;
+    --c-footer-text: #302b26;
+}
+
+/* ---- Dark mode ---- */
+:root[data-bs-theme="dark"] {
+    --c-page-bg: #1b1917;
+    --c-text: #dbd7d0;
+    --c-link: #93aeca;
+
+    --c-nav-bg: #242a2f;
+    --c-nav-active: #647585;
+
+    --c-intro-bg: #322d29;
+    --c-intro-text: #f2f0ec;
+    --c-intro-link: #d4af90;
+
+    --c-section-bg: #2d2822;
+    --c-section-text: #cac3b9;
+    --c-section-link: #d0a88d;
+    --c-divider: rgba(202, 195, 185, 0.16);
+
+    --c-pub-text: #d5d0ca;
+    --c-pub-rule: #68625c;
+    --c-award: #cc8b88;
+
+    --c-card-bg: #252220;
+    --c-card-header-bg: rgba(255, 255, 255, 0.04);
+    --c-card-border: rgba(255, 255, 255, 0.14);
+    --c-card-text: #d5d0ca;
+
+    --c-btn-text: #bcb6b1;
+    --c-btn-hover-bg: #c7c0b7;
+    --c-btn-hover-text: #1b1917;
+    --c-btn-detail-border: #a47b70;
+    --c-btn-pdf-border: #758d9c;
+    --c-btn-proj-bg: #2a2725;
+    --c-btn-proj-border: #3b3734;
+
+    --c-blog-text: #c2bdb5;
+    --c-blog-paragraph: #bcb6af;
+    --c-blog-meta-link: #8ca9be;
+
+    --c-footer-bg: #242a2f;
+    --c-footer-text: #afaaa4;
+}
+
+/* The footer sits at the bottom of the window on short pages and after the
+   content on long ones (it no longer covers the page). */
 body {
-	/* background: #3E4649; */
-	/* background: #393E46; */
-	background   : #f0ebe5;
-	/* background: #656565; */
-	/* background: #fdf9ee; */
-	/* color        : #f7f7f7; */
-	/* font-family  : 'Montserrat', sans-serif; */
-	font-family: Verdana, Geneva, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--c-page-bg);
+    color: var(--c-text);
+    font-family: var(--font-body);
 }
+main { flex: 1 0 auto; }
 
-h1,
-h2,
-h3 {
-	font-weight: bold;
+/* Bootstrap 5 underlines every link; keep the underline-on-hover look. */
+a { color: var(--c-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Links inside running text (introduction, news, project pages) keep a thin,
+   soft underline, so they're recognizable without relying on color alone:
+   the muted palette means link and text colors are close. Solid on hover. */
+.home-intro__text a,
+.news a,
+.blog-post p a {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
 }
+.home-intro__text a:hover,
+.news a:hover,
+.blog-post p a:hover { text-decoration-color: currentColor; }
 
-.index-custom p {
-	font-size: 1rem;
-	color    : #cdcdcd;
+h2, h3 { font-weight: bold; }
+
+/* Inline icons (_includes/icons/*.svg) sit on the text baseline. */
+.bi { vertical-align: -0.125em; }
+
+
+/* ---- Page width -----------------------------------------------------------
+   Every page's content sits in <main class="page page--SIZE">, centered. The
+   layout picks SIZE with `width:` in its front matter.
+
+   The width is the window minus --page-gutter on each side, up to a maximum.
+   So on wide windows it holds its maximum width while the margins shrink;
+   once the margins are down to the gutter, it shrinks with the window. This
+   uses min() rather than breakpoints, so nothing jumps while resizing.
+
+   page--header (default; homepage and projects)
+     Maximum = the header's width, so the edges line up with the left of the
+     site name and the right of the last menu item at every window width.
+   page--publications
+     Same rule with a smaller maximum, since very long lines of text are hard
+     to read. Change --pub-max to adjust. */
+:root { --pub-max: 64rem; }
+
+.page {
+    width: min(100% - 2 * var(--page-gutter), var(--header-max));
+    margin-inline: auto;
 }
-
-.index-custom h2 {
-	font-size: 1.6rem;
-}
-
-.index-custom h3 {
-	font-size: 1.4rem;
-}
-
-.index-custom h5 {
-	font-size: 1.2rem;
-}
-
-.index-custom hr {
-	margin: 0;
-	padding: 0;
-	height: 0.05rem;
-	background: #bfbfbf;
-}
-.container-fluid {
-	margin-left : 0px;
-	margin-right: 0px;
-}
-
-.row {
-	margin-left : 0px;
-	margin-right: 0px;
-}
-
-.index-custom .jumbotron {
-	/* background: #4da6ff; */
-	/* background: #c1cbd7; */
-	background    : #656565;
-	/* background : #8696a7; */
-	color         : white;
-	text-align    : left;
-	margin-bottom : 0px;
-	border-radius : 0px;
-	padding-bottom: 0.7rem;
-	padding-top   : 0.7rem;
-}
-
-.index-custom .jumbotron p {
-	color        : white;
-	font-size    : 1.05rem;
-	padding-left : 1.25rem;
-	padding-right: 1.25rem;
-}
-
-.index-custom .jumbotron ul {
-	font-size    : 1rem;
-	padding-left : 2.5rem;
-	padding-right: 2.5rem;
-}
-
-.index-custom .jumbotron h3,
-h2 {
-	padding-left : 1.1rem;
-	padding-right: 1.25rem;
-}
-
-.index-custom .jumbotron a {
-	/* color: yellow; */
-	color      : #f2a365;
-	font-weight: normal;
-}
-
-.index-custom .jumbotron .container {
-	height        : 100%;
-	padding-top   : 0;
-	padding-bottom: 0;
-}
-
-.index-custom .index-news a {
-	color:#B85B14;
-}
-
-.row .col-img-wrap {
-	padding-left : 0;
-	padding-right: 0;
-}
-
-/* .col-img-wrap img {
-	width: 50vw;
-	height: 100%;
-} */
-
-
-.btn-primary {
-	color           : #656565;
-	background-color: transparent;
-	border-color    : white;
-	border-width    : 0.125rem;
-	/* margin-bottom: 5px; */
+.page--publications {
+    width: min(100% - 2 * var(--page-gutter), var(--pub-max));
 }
 
 
-.btn-detail {
-	margin-top: 0.2rem;
-	border-color: lightsalmon;	
+/* ---- Navigation bar ------------------------------------------------------ */
+.site-nav { background-color: var(--c-nav-bg); }
+.site-nav > .container-fluid {
+    max-width: calc(var(--header-max) + 2 * var(--page-gutter));
+    padding-inline: var(--page-gutter);
 }
+.site-nav .navbar-brand { font-weight: bold; }
+.site-nav .nav-link { padding-inline: 0.85rem; }
+.site-nav .nav-link.active { background-color: var(--c-nav-active); }
 
-.btn-pdf {
-	margin-top: 0.2rem;
-	border-color: lightblue;
+/* Light/dark switch (js/theme.js). Hidden when scripts are off, since it
+   couldn't do anything. Shows a moon in light mode and a sun in dark mode. */
+.theme-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--bs-border-radius);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.1rem;
 }
-
-.btn:focus,
-.btn:active {
-	outline   : none !important;
-	box-shadow: none;
-}
-
-
-.btn-primary:hover {
-	/* color: #4da6ff; */
-	color           : white;
-	background-color: #656565;
-	border-color    : #656565;
-}
-
-.btn-proj {
-	color           : #656565 !important;
-	background-color: #fffaf4;
-	/* border-color    : #656565; */
-	border-color    : #f0ebe5;
-	font-weight     : 800;
-	font-size       : medium;
-}
-
-.btn-proj:hover {
-	/* color: #4da6ff; */
-	color           : #fffaf4 !important;
-	background-color: #656565;
-	border-color    : #656565;
-}
-
-.card-proj .card-header {
-	color    : #656565;
-	/* font-size: x-large !important; */
-	font-size: 1.2rem;
-
-}
-
-.card-proj .card-body {
-	color: #595959;
-	font-size: 0.95rem;
+.js .theme-toggle { display: inline-flex; }
+.theme-toggle:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.theme-toggle:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-bs-theme="dark"] .theme-toggle .icon-sun { display: inline; }
+:root[data-bs-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (min-width: 576px) {
+    .theme-toggle { margin-left: 0.35rem; }
 }
 
 
-
-/* .navbar .navbar-dark {
-	background: #2E2F31;
-	background: #222831;
-	background: #fffaf4;
-	border    : 0;
-} */
-
-/* .navbar .navbar-nav .nav-item.active .nav-link,
-.navbar .navbar-nav .nav-item.active .nav-link:hover,
-.navbar .navbar-nav .nav-item.active .nav-link:focus,
-.navbar .navbar-nav .nav-item.show .nav-link,
-.navbar .navbar-nav .nav-item.show .nav-link:hover,
-.navbar .navbar-nav .nav-item.show .nav-link:focus {
-  color: #ab5253;
-  background-color: #7c6260;
-} */
-/* .navbar .navbar-toggle {
-  border-color: #7c6260;
-}
-.navbar .navbar-toggle:hover,
-.navbar .navbar-toggle:focus {
-  background-color: #7c6260;
-} */
-
-.navbar .navbar-nav .nav-item .nav-link.active {
-	background-color: #8696a7;
-}
-
-.navbar .container{
-	max-width: 80rem;
-}
-.navbar-inverse {
-	/* background: #2E2F31; */
-	background   : #222831;
-	/* background: #fffaf4; */
-	border       : 0;
-}
-
-.navbar-inverse .navbar-nav li a {
-	color    : #f7f7f7;
-	font-size: 1rem;
-}
-
-.navbar-inverse .navbar-nav li a:hover {
-	/* background: #4da6ff; */
-	background: #c1cbd7;
-}
-
-.dropdown-menu {
-	background   : #2E2F31;
-	border-radius: 0;
-	border       : 0;
-}
-
-.dropdown-menu li a {
-	padding: 0.7rem;
-}
-
-.navbar-inverse .navbar-nav .dropdown-menu li a:hover {
-	background: #2C463C;
-}
-
-footer {
-	position           : fixed;
-	bottom             : 0;
-	width              : 100%;
-	height             : 3rem;
-	line-height        : 3rem;
-	/* background-color: #f5f5f5; */
-	background-color   : #a6a6a8;
-}
-
-html {
-	position  : relative;
-	min-height: 100%;
-}
-
-body {
-	/* Margin bottom by footer height */
-	margin-bottom: 50px;
-}
-
-.jumbotron .container-pub {
-	height        : 100%;
-	padding-top   : 0;
-	padding-bottom: 0;
-}
-
-.container-pub {
-	padding-left: 15px;
-}
-
-.container-pub p {
-	padding-left : 0px;
-	padding-right: 0px;
-	margin-bottom: 0rem;
-	font-size    : 0.95rem;
-	color        : #2E2F31;
+/* ---- Footer -------------------------------------------------------------- */
+.site-footer {
+    padding: 0.9rem var(--page-gutter);
+    background-color: var(--c-footer-bg);
+    color: var(--c-footer-text);
+    text-align: center;
+    line-height: 1.4;
 }
 
 
-.container-pub h6 {
-	padding-left : 0px;
-	/* margin-top: 0.7rem; */
-	margin-bottom: 0.1rem;
-	font-size: 0.95rem;
+/* ---- Homepage: introduction with photo ------------------------------------
+   The photo keeps a sensible shape at every window width:
+     below 700px   wide 2:1 banner on top (the building at the top of the
+                   photo is cropped away to save screen space), text below
+     700-991px     portrait photo floated top-left, text wraps around it
+     992px and up  photo as a left column (one third) matching the text height
+   The crop is centered on the face (object-position). */
+.home-intro {
+    --intro-pad: 1.25rem;       /* space around the introduction text */
+    --hello-size: 1.4rem;       /* size of the "Hello!" heading */
+    display: flex;
+    flex-direction: column;
+    background: var(--c-intro-bg);
+    color: var(--c-intro-text);
+}
+.home-intro__photo {
+    position: relative;
+    width: 100%;          /* explicit, so the banner always spans the panel */
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+}
+.home-intro__photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 49% 88%;   /* banner: keep the person, crop the building above */
+}
+.home-intro__text { padding: var(--intro-pad) var(--intro-pad) 0.25rem; }
+.home-intro__text h3 { font-size: var(--hello-size); }
+.home-intro__text p { font-size: 1.05rem; }
+.home-intro__text a { color: var(--c-intro-link); }
+
+@media (min-width: 700px) {
+    .home-intro__photo img { object-position: 49% 35%; }  /* portrait crops: centered on the face */
+}
+@media (min-width: 700px) and (max-width: 991.98px) {
+    .home-intro { display: block; }          /* normal flow, so text can wrap */
+    .home-intro::after { content: ""; display: table; clear: both; }
+    .home-intro__photo {
+        float: left;
+        width: 35%;
+        aspect-ratio: 3 / 4;
+        /* Inset like the text, so the photo sits inside the panel:
+           - top: the text's padding plus the small space above the capital
+             letters of "Hello!" (about 0.2 x its size in all three fonts),
+             so the photo's top lines up with the top of the letters;
+           - left: the text's padding, so it lines up with the text below it;
+           - right: the gap to the text beside it. */
+        margin: calc(var(--intro-pad) + 0.2 * var(--hello-size)) var(--intro-pad) 1rem var(--intro-pad);
+        border-radius: 0.25rem;
+    }
+}
+@media (min-width: 992px) {
+    .home-intro { flex-direction: row; }
+    .home-intro__photo {
+        flex: 0 0 33.333%;
+        width: auto;
+        aspect-ratio: auto;
+        min-height: 18rem;
+    }
+}
+@media (min-width: 700px) {
+    .home-intro__text { text-align: justify; }
 }
 
 
-.container-pub a {
-	font-weight: 400;
-	color      : #656565;
+/* ---- Homepage: Education / News / Services / Contact ----------------------
+   Heading above the content on narrow screens; heading in a left column
+   (one third) from 768px. */
+.home-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: var(--c-section-bg);
+    color: var(--c-section-text);
+    padding: 0.7rem 0 0.5rem;
+}
+/* Thin divider between consecutive sections, inset from the edges. */
+.home-section + .home-section::before {
+    content: "";
+    grid-column: 1 / -1;
+    height: 1px;
+    margin: -0.7rem 1.25rem 0.7rem;
+    background: var(--c-divider);
+}
+@media (min-width: 768px) {
+    .home-section { grid-template-columns: 1fr 2fr; }
+}
+.home-section__title {
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0.6rem 1rem 0;
+}
+.home-section__body { padding: 0.6rem 1.25rem 0; }
+.home-section a { color: var(--c-section-link); }
+.home-section h5 { font-size: 1.2rem; font-weight: bold; }
+.home-section ul { padding-left: 1.9rem; }
+.home-section .services h6 { font-weight: bold; margin-bottom: 0.25rem; }
+.home-section .services ul { margin-bottom: 0.6rem; }
+.home-section .contact-email { color: var(--c-section-text); }
+.contact-links a + a { margin-left: 0.9rem; }
+
+/* News: the date sits in its own column in place of the bullet, so the
+   list starts flush with the other sections' text (no bullet indent). */
+.home-section .news {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.news li {
+    display: grid;
+    grid-template-columns: 4.6em 1fr;
+    column-gap: 0.75rem;
+    padding-bottom: 0.2rem;  /* padding, not margin: margins would leak out of
+                                the collapsing older-news block and make it jump */
+}
+.news__date {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9em;
+    padding-top: 0.08em;
+    white-space: nowrap;
 }
 
-.s-cover {
-	margin-left    : 0px;
-	margin-right   : 0px;
-	padding-left   : 0px;
-	padding-right  : 0px;
-	width          : 100%;
-	height         : 100%;
-	background     : url("../imgs/shiwei.jpg") no-repeat center;
-	background-size: cover;
-	/*outline      : 1px solid red;*/
+/* Older news: folded away behind the "Show more" button (Bootstrap collapse).
+   As with the publication abstracts, the collapsing element itself has no
+   margin or padding, so the open/close animation stays smooth. Without
+   scripts only the newest items show, and the button is hidden. */
+.news-toggle {
+    display: none;
+    margin: 0.4rem 0 1rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--c-section-link);
+    font-weight: 600;
 }
-
-
-.collapse {
-	border-width: 0.125rem;
-}
-
-.collapse .card {
-	background: #c1cbd7;
-	color     : #2E2F31;
-	border    : #2E2F31;
-}
-
-.collapse .card .card-body{
-	font-size: 0.95rem;
-}
-
-.collapse .card:only-of-type {
-	/* border-radius: .25rem; */
-	border-radius: 1px;
-	border       : 1px solid rgba(0, 0, 0, .125);
-}
-
-
+.js .news-toggle { display: inline-flex; align-items: center; gap: 0.35rem; }
+.news-toggle:hover { text-decoration: underline; }
+.news-toggle .bi { transition: transform 0.2s ease; }
+.news-toggle[aria-expanded="true"] .bi { transform: rotate(180deg); }
+.news-toggle[aria-expanded="true"] .news-toggle__more,
+.news-toggle[aria-expanded="false"] .news-toggle__less { display: none; }
+.news-end { margin-bottom: 1rem; }
 
 .icon-svg {
-	outline: 2px solid #595959;
-	display: inline-block;
-	vertical-align: middle;
-	fill: #595959;
+    outline: 2px solid var(--c-section-text);
+    display: inline-block;
+    vertical-align: middle;
+    fill: var(--c-section-text);
+}
+.icon-svg:hover {
+    background-color: var(--c-section-text);
+    fill: var(--c-section-bg);
 }
 
-.icon-svg:hover {
-	display: inline-block;
-	vertical-align: middle;
-	background-color: #595959;
-	fill: #d8caaf !important;
+
+/* ---- Long text: justified on wider screens only (avoids large gaps
+   between words on phones). ------------------------------------------------ */
+@media (min-width: 576px) {
+    .blog-post { text-align: justify; }
+}
+
+
+/* ---- Buttons --------------------------------------------------------------
+   Outline buttons on the publications and projects pages. Set through
+   Bootstrap 5's button variables so hover, active and keyboard-focus states
+   all stay consistent. */
+.btn-pub {
+    --bs-btn-color: var(--c-btn-text);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-width: 0.125rem;
+    --bs-btn-border-color: var(--c-page-bg);
+    --bs-btn-hover-color: var(--c-btn-hover-text);
+    --bs-btn-hover-bg: var(--c-btn-hover-bg);
+    --bs-btn-hover-border-color: var(--c-btn-hover-bg);
+    --bs-btn-active-color: var(--c-btn-hover-text);
+    --bs-btn-active-bg: var(--c-btn-hover-bg);
+    --bs-btn-active-border-color: var(--c-btn-hover-bg);
+    --bs-btn-focus-shadow-rgb: 101, 101, 101;
+    margin-top: 0.2rem;
+}
+.btn-detail { --bs-btn-border-color: var(--c-btn-detail-border); }
+.btn-pdf    { --bs-btn-border-color: var(--c-btn-pdf-border); }
+
+.btn-proj {
+    --bs-btn-color: var(--c-btn-text);
+    --bs-btn-bg: var(--c-btn-proj-bg);
+    --bs-btn-border-color: var(--c-btn-proj-border);
+    --bs-btn-hover-color: var(--c-btn-hover-text);
+    --bs-btn-hover-bg: var(--c-btn-hover-bg);
+    --bs-btn-hover-border-color: var(--c-btn-hover-bg);
+    --bs-btn-active-color: var(--c-btn-hover-text);
+    --bs-btn-active-bg: var(--c-btn-hover-bg);
+    --bs-btn-active-border-color: var(--c-btn-hover-bg);
+    --bs-btn-focus-shadow-rgb: 101, 101, 101;
+    --bs-btn-font-weight: 800;
+    --bs-btn-font-size: 1rem;
+}
+
+
+/* ---- Publications page --------------------------------------------------- */
+.pubs { padding: 1.5rem 0 2rem; }
+.pubs__title { font-weight: bold; }
+.pubs__rule { height: 0.125rem; background: var(--c-pub-rule); border: 0; opacity: 1; }
+.pubs__section {
+    font-size: 1.3rem;
+    padding: 0 0 10px 10px;
+}
+.pub { padding-left: 15px; margin-bottom: 1.5rem; }
+.pub h6 { font-size: 0.95rem; font-weight: bold; margin-bottom: 0.1rem; }
+.pub p { font-size: 0.95rem; color: var(--c-pub-text); margin-bottom: 0; }
+.pub .award { color: var(--c-award); }
+/* Students you advise (`students:` in _data/publications.yml): a plain
+   underline in the text color, so it doesn't look like a link. */
+.advisee {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+.pubs__legend { font-size: 0.9rem; color: var(--c-pub-text); padding-left: 10px; }
+
+/* The abstract panel. Its spacing lives *inside* the collapsing element and
+   its styles hang off .pub-abstract, so nothing changes size when Bootstrap
+   swaps .collapse/.collapsing during the open/close animation. */
+.pub-abstract { padding: 1rem 4.1667% 0; }  /* card is 11/12 of the column, centered */
+.pub-abstract .card {
+    border-radius: 1px;
+}
+
+/* Cards (abstracts, project cards, BibTeX boxes) take their colors from the
+   palette, so they follow light/dark mode. */
+.card {
+    --bs-card-bg: var(--c-card-bg);
+    --bs-card-cap-bg: var(--c-card-header-bg);
+    --bs-card-cap-color: var(--c-card-text);   /* card headings, e.g. "Abstract" */
+    --bs-card-border-color: var(--c-card-border);
+    --bs-card-color: var(--c-card-text);
+}
+.pub-abstract .card-body { font-size: 0.95rem; }
+
+
+/* ---- Research page (project cards) --------------------------------------- */
+.projects { padding-bottom: 10px; }
+.card-proj { margin-top: 1rem; }
+.card-proj .card-header { color: var(--c-card-text); font-size: 1.2rem; }
+.card-proj .card-body { color: var(--c-card-text); font-size: 0.95rem; }
+
+
+/* ---- Project write-up pages (_layouts/project.html) ----------------------- */
+.blog-post {
+    margin-bottom: 4rem;
+    color: var(--c-blog-text);
+}
+
+.blog-title {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-size: x-large;
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+.blog-post-meta {
+    margin-bottom: 0.5rem;
+    color: var(--c-blog-paragraph);
+    font-size: 0.9rem;
+}
+.blog-post-meta a { color: var(--c-blog-meta-link); }
+
+.blog-post h3 { font-size: 1.4rem; }
+
+.blog-post p {
+    font-size: 0.95rem;
+    color: var(--c-blog-paragraph);
+    font-weight: 500;
+}
+
+.blog-post code { color: var(--c-blog-paragraph); }
+.blog-post .card code { color: var(--c-card-text); }   /* BibTeX box: card background */
+.blog-post a { overflow-wrap: break-word; }
+
+/* {% include figure.html %}: centered image, two thirds wide on larger screens */
+.project-figure {
+    margin: 0 auto 1.5rem;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .project-figure { max-width: 66.667%; }
+}
+
+/* {% include citation.html %}: BibTeX box */
+.citation { margin: 1rem 0 1.5rem; padding-inline: 4.1667%; }
+.citation pre {
+    margin: 0;
+    white-space: pre-wrap;      /* long BibTeX lines wrap instead of scrolling */
+    overflow-wrap: break-word;
 }

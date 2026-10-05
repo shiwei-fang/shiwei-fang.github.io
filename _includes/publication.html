@@ -1,0 +1,49 @@
+{%- comment -%}
+  One publication entry. Called from _layouts/publications.html as
+    {% include publication.html pub=pub %}
+  Field reference: see the comment at the top of _data/publications.yml.
+  The abstract opens with Bootstrap's collapse; keep all spacing inside
+  .pub-abstract (see css/custom.css) so the animation stays smooth.
+{%- endcomment -%}
+{%- assign pub = include.pub -%}
+{%- comment -%}
+  Author line: names listed under `students:` are underlined (students you
+  advise, for this paper), then your own name (`author` in _config.yml) is
+  bolded. Both match the exact text in `authors`.
+{%- endcomment -%}
+{%- assign authors = pub.authors -%}
+{%- for name in pub.students -%}
+  {%- capture marked %}<u class="advisee">{{ name }}</u>{% endcapture -%}
+  {%- assign authors = authors | replace: name, marked -%}
+{%- endfor -%}
+{%- capture me %}<b>{{ site.author }}</b>{% endcapture -%}
+{%- assign authors = authors | replace: site.author, me -%}
+    <article class="pub">
+        <h6>{{ pub.title }}</h6>
+        <p>{{ authors }}</p>
+        {%- if pub.equal_contribution %}
+        <p>(* Equal Contribution)</p>
+        {%- endif %}
+        <p>{{ pub.venue }}{% if pub.award %} <span class="award">({{ pub.award }})</span>{% endif %}</p>
+        {%- if pub.abstract %}
+        <button class="btn btn-sm btn-pub btn-detail" type="button" data-bs-toggle="collapse" data-bs-target="#{{ pub.id }}" aria-expanded="false" aria-controls="{{ pub.id }}">Details</button>
+        {%- endif %}
+        {%- if pub.link %}
+        <a class="btn btn-sm btn-pub btn-pdf" href="{{ pub.link }}" target="_blank">PDF</a>
+        {%- endif %}
+        {%- if pub.abstract %}
+        <div class="collapse" id="{{ pub.id }}">
+            <div class="pub-abstract">
+                <div class="card">
+                    <div class="card-header"><b>Abstract</b></div>
+                    <div class="card-body">
+                        {{ pub.abstract }}
+                    </div>
+                    {%- if pub.project %}
+                    <a class="btn btn-lg btn-proj" href="{{ pub.project | relative_url }}">Project Page</a>
+                    {%- endif %}
+                </div>
+            </div>
+        </div>
+        {%- endif %}
+    </article>

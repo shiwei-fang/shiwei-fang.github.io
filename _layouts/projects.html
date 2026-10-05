@@ -1,0 +1,19 @@
+---
+layout: default
+width: header
+---
+{%- comment -%}
+  Research page layout (used by projects/projects.md): one card per project.
+  The cards are generated from _data/projects.yml.
+{%- endcomment %}
+<div class="projects">
+{%- for project in site.data.projects %}
+    <div class="card card-proj">
+        <div class="card-header"><b>{{ project.title }}</b></div>
+        <div class="card-body">
+            {{ project.summary }}
+        </div>
+        <a class="btn btn-lg btn-proj" href="{{ project.url | relative_url }}">Project Page</a>
+    </div>
+{%- endfor %}
+</div>

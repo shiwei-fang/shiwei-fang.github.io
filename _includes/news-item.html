@@ -1,0 +1,12 @@
+{%- comment -%}
+  One news item (date + text). Used by _layouts/home.html.
+  The date is written "YYYY-MM" in _data/news.yml and shown as YYYY/MM, or
+  MM/YYYY when news_date_format is "mm/yyyy" in _config.yml.
+{%- endcomment -%}
+{%- assign ym = include.item.date | split: "-" -%}
+<li>
+                <time class="news__date" datetime="{{ include.item.date }}">
+                {%- if site.news_date_format == "mm/yyyy" %}{{ ym[1] }}/{{ ym[0] }}{% else %}{{ ym[0] }}/{{ ym[1] }}{% endif -%}
+                </time>
+                <span>{{ include.item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>
+            </li>

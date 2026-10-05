@@ -1,0 +1,12 @@
+{%- comment -%}
+  Centered image for project pages. Usage in a Markdown page:
+    {% include figure.html src="/projects/pics/my-image.jpg" width="800" height="600" alt="What the image shows" %}
+  width/height are the image file's size in pixels: the browser reserves the
+  space before the image arrives, so the text doesn't jump. The image loads
+  only when the reader scrolls near it (loading="lazy").
+  Put the include on its own line with blank lines around it.
+{%- endcomment -%}
+<figure class="project-figure">
+    <img src="{{ include.src | relative_url }}" class="img-fluid"
+        {%- if include.width %} width="{{ include.width }}" height="{{ include.height }}"{% endif %} loading="lazy" decoding="async" alt="{{ include.alt | escape }}">
+</figure>

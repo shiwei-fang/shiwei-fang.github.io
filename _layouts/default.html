@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{%- comment -%}
+  Base layout: every page uses this, directly or through another layout.
+  It provides <head>, the navigation bar, the footer and Bootstrap's script;
+  the page's own content goes where {{ content }} is.
+
+  Content width: <main> gets class page--header or page--publications
+  (see css/custom.css). A layout or page sets it with `width:` in its front
+  matter; the default is header.
+{%- endcomment %}
+{%- assign width = page.width | default: layout.width | default: "header" %}
+<html lang="en">
+
+<head>
+{% include head.html %}
+</head>
+
+<body class="font-{{ site.font | default: 'verdana' }}">
+{% include nav.html %}
+
+<main class="page page--{{ width }}">
+{{ content }}
+</main>
+
+{% include footer.html %}
+
+    <script src="{{ '/bootstrap/js/bootstrap.min.js' | relative_url }}"></script>
+</body>
+
+</html>
